@@ -4,19 +4,19 @@ import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { CloudArrowDownIcon, RocketLaunchIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import Typewriter from "./components/Typewriter";
+import Typewriter from "../components/Typewriter";
 import Lottie from "lottie-react";
-import groqet from "../public/groqet.json"
+import groqet from "../../public/groqet.json"
 
 
 const llmModels = [
   {
     id: 0,
-    model: 'llama2-70b-4096',
+    model: 'llama3-8b-8192',
   },
   {
     id: 1,
-    model: "mixtral-8x7b-32768"
+    model: "llama3-70b-8192"
   }
 ]
 
@@ -41,7 +41,7 @@ export default function Home() {
   ] as any[]);
   const [prompt, setPrompt] = useState("");
   const [showModel, setShowModel] = useState(false);
-  const [model, setModel] = useState("mixtral-8x7b-32768"); // default model
+  const [model, setModel] = useState("llama3-70b-8192"); // default model
   const [reply, setReply] = useState("");
   const [recognition, setRecognition] = useState(null as any);
   const [isListening, setIsListening] = useState(false);
@@ -212,8 +212,8 @@ export default function Home() {
         {!reply &&
           <div className="text-center flex flex-col gap-2">
             <Lottie animationData={groqet} loop={true} className="w-32 h-32 mx-auto" />
-            Welcome to Groqet
-            <a href="https://x.com/aaronbesson" className="text-xs opacity-50" target="_blank">by @aaronbesson</a>
+            Ready to serve.
+            <a href="https://x.com/aaronbesson" className="text-xs opacity-50" target="_blank">Ask me a question</a>
           </div>}
 
       </div>
@@ -283,13 +283,7 @@ export default function Home() {
         ))}
       </div>
       <div className="flex-1" />
-      <a
-        href='https://github.com/aaronbesson/groqet'
-        target="_blank"
-        className="opacity-30 hover:opacity-90 cursor-pointer transition-all duration-700 bg-white p-1 rounded-lg flex gap-1 text-xs pr-2 items-center">
-        <Image src="/github-icon.svg" alt="Groquet" width={16} height={16} className="" />
-        Github
-      </a>
+      
     </div>;
   }
 }
